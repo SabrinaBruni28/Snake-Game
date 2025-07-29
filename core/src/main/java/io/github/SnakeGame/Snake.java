@@ -34,13 +34,28 @@ public class Snake {
         }
     }
 
-    public void setDirection(Direction dir) {
-        if (!dir.isOpposite(direction)) {
-            direction = dir;
+    public void setDirection(Direction newDirection) {
+        if (!newDirection.isOpposite(direction)) {
+            direction = newDirection;
         }
     }
 
     public boolean isCollidingWith(Food food) {
         return body.first().epsilonEquals(food.getPosition(), 0.1f);
+    }
+
+    public boolean isCollidingWithSelf() {
+        Vector2 head = body.first();
+        for (int i = 1; i < body.size; i++) {
+            if (head.epsilonEquals(body.get(i), 0.1f)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isOutOfBounds(int width, int height) {
+        Vector2 head = body.first();
+        return head.x < 0 || head.x >= width || head.y < 0 || head.y >= height;
     }
 }

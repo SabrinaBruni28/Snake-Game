@@ -6,7 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class GameScreen implements Screen {
+public class InicialGame implements Screen {
     private Snake snake;
     private Food food;
     private ShapeRenderer shapeRenderer;
