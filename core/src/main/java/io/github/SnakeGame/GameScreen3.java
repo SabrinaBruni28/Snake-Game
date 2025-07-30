@@ -10,35 +10,42 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.Iterator;
 
-public class GameScreen2 implements Screen {
+public class GameScreen3 implements Screen {
     private final Main game;
     private Snake snake;
     private ArrayList<Food> food;
     private ShapeRenderer shapeRenderer;
 
-    private float timeRemaining = 60f; // 60 segundos, por exemplo
+    private float timeRemaining = 180f;
+    private int currentTargetId = 1;
 
     private float timer = 0;
     private final float MOVE_INTERVAL = 0.2f;
 
     private SpriteBatch batch;
-    private BitmapFont font;
+    private BitmapFont fontSmall;
+    private BitmapFont fontLarge;
 
-    public GameScreen2(Main game) {
+    public GameScreen3(Main game) {
         this.game = game;
     }
 
     @Override
     public void show() {
         batch = new SpriteBatch();
-        font = new BitmapFont(); // você pode carregar um customizado, se quiser
-        font.getData().setScale(2f); // aumenta o tamanho da fonte
+        fontSmall = new BitmapFont();
+        fontSmall.getData().setScale(1f);
+
+        fontLarge = new BitmapFont();
+        fontLarge.getData().setScale(1.5f);
         shapeRenderer = new ShapeRenderer();
         snake = new Snake();
         food = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 25; i++) {
             food.add(new Food(i+1));
         }
+
+        food.sort((a, b) -> Integer.compare(a.getId(), b.getId()));
     }
 
     @Override
@@ -68,12 +75,22 @@ public class GameScreen2 implements Screen {
             while (iterator.hasNext()) {
                 Food f = iterator.next();
                 if (snake.isCollidingWith(f)) {
-                    snake.grow();
-                    iterator.remove(); // forma segura de remover
+                    if (f.getId() == currentTargetId) {
+                        snake.grow();
+                        iterator.remove();
+                        currentTargetId++;
 
-                    if (food.isEmpty()) {
+                        if (food.isEmpty()) {
+                            int score = snake.getLength() - 1;
+                            game.setScreen(new WinScreen(game, score));
+                            dispose();
+                            return;
+                        }
+                    } 
+                    else {
+                        // Comeu a comida errada → Game Over
                         int score = snake.getLength() - 1;
-                        game.setScreen(new WinScreen(game, score));
+                        game.setScreen(new GameOverScreen(game, score));
                         dispose();
                         return;
                     }
@@ -94,7 +111,10 @@ public class GameScreen2 implements Screen {
 
         // Mostrar o tempo
         batch.begin();
-            font.draw(batch, "Tempo: " + (int)timeRemaining, 10, Gdx.graphics.getHeight() - 10);
+            for (Food f : food) {
+                f.drawNumber(batch, fontSmall);
+            }
+            fontLarge.draw(batch, "Tempo: " + (int)timeRemaining, 10, Gdx.graphics.getHeight() - 10);
         batch.end();
     }
 
@@ -112,6 +132,7 @@ public class GameScreen2 implements Screen {
     @Override public void dispose() {
         shapeRenderer.dispose();
         batch.dispose();
-        font.dispose();
+        fontSmall.dispose();
+        fontLarge.dispose();
     }
 }

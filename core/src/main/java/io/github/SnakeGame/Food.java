@@ -2,17 +2,24 @@ package io.github.SnakeGame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 public class Food {
     private Vector2 position;
-    private static final int GRID_SIZE = 20; // tamanho de cada célula
+    private int id;
+
+    private static final int GRID_SIZE = 20;
     private static final int GRID_WIDTH = Gdx.graphics.getWidth() / GRID_SIZE;
     private static final int GRID_HEIGHT = Gdx.graphics.getHeight() / GRID_SIZE;
+    private static final GlyphLayout layout = new GlyphLayout();
 
-    public Food() {
+    public Food(int id) {
+        this.id = id;
         position = new Vector2();
         respawn();
     }
@@ -21,10 +28,28 @@ public class Food {
         return position;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void draw(ShapeRenderer renderer) {
         renderer.setColor(Color.RED);
         renderer.rect(position.x * GRID_SIZE, position.y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
         renderer.setColor(Color.WHITE);
+    }
+
+    public void drawNumber(SpriteBatch batch, BitmapFont font) {
+        String text = String.valueOf(id);
+
+        layout.setText(font, text); // calcula largura/altura
+
+        float textWidth = layout.width;
+        float textHeight = layout.height;
+
+        float x = position.x * GRID_SIZE + (GRID_SIZE - textWidth) / 2f;
+        float y = position.y * GRID_SIZE + (GRID_SIZE + textHeight) / 2f;
+
+        font.draw(batch, text, x, y);
     }
 
     public void respawn() {
@@ -33,5 +58,3 @@ public class Food {
         position.set(x, y);
     }
 }
-
-

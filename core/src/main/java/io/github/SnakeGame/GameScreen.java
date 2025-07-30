@@ -23,7 +23,7 @@ public class GameScreen implements Screen {
     public void show() {
         shapeRenderer = new ShapeRenderer();
         snake = new Snake();
-        food = new Food();
+        food = new Food(0);
     }
 
     @Override

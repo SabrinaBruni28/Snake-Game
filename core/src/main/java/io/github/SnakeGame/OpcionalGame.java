@@ -59,12 +59,22 @@ public class OpcionalGame implements Screen {
             }
         });
 
+        TextButton playButton3 = new TextButton("Com tempo e ordem", skin);
+        playButton3.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new GameScreen3(game));
+                dispose();
+            }
+        });
+
         Table table = new Table();
         table.setFillParent(true);
         table.center();
         table.add(title).padBottom(30).row();
-        table.add(playButton).width(100).height(60);
-        table.add(playButton2).width(300).height(60);
+        table.add(playButton).width(50).height(60);
+        table.add(playButton2).width(250).height(60);
+        table.add(playButton3).width(350).height(60);
 
         stage.addActor(table);
     }
