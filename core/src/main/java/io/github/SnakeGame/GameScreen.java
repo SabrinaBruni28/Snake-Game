@@ -7,12 +7,17 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class GameScreen implements Screen {
+    private final Main game;
     private Snake snake;
     private Food food;
     private ShapeRenderer shapeRenderer;
 
     private float timer = 0;
     private final float MOVE_INTERVAL = 0.2f;
+
+    public GameScreen(Main game) {
+        this.game = game;
+    }
 
     @Override
     public void show() {
@@ -35,7 +40,9 @@ public class GameScreen implements Screen {
             }
             
             else if (snake.isCollidingWithSelf() || snake.isOutOfBounds(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())) {
-                Gdx.app.exit(); // Exit the game if snake collides with itself or goes out of bounds
+                int score = snake.getLength() - 1; // ou outra lógica de score
+                game.setScreen(new GameOverScreen(game, score));
+                dispose();
             }
 
             timer = 0;

@@ -28,6 +28,10 @@ public class Snake {
         body.add(new Vector2(body.peek()));
     }
 
+    public int getLength() {
+        return body.size;
+    }
+
     public void draw(ShapeRenderer renderer) {
         for (Vector2 part : body) {
             renderer.rect(part.x * 20, part.y * 20, 20, 20);
