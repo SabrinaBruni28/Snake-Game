@@ -16,14 +16,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class InicialGame implements Screen {
+public class OpcionalGame implements Screen {
     private final Main game;
     private Stage stage;
     private ShapeRenderer shapeRenderer;
     private BitmapFont font;
     private Skin skin;
 
-    public InicialGame(Main game) {
+    public OpcionalGame(Main game) {
         this.game = game;
     }
 
@@ -36,15 +36,25 @@ public class InicialGame implements Screen {
         font = new BitmapFont();
         shapeRenderer = new ShapeRenderer();
 
-        Label title = new Label("Snake Game", skin, "default");
+        Label title = new Label("Qual tipo de jogo?", skin, "default");
         title.setFontScale(2);
         title.setAlignment(Align.center);
+        title.setX(500);
 
-        TextButton playButton = new TextButton("Jogar", skin);
+        TextButton playButton = new TextButton("Normal", skin);
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new OpcionalGame(game));
+                game.setScreen(new GameScreen(game));
+                dispose();
+            }
+        });
+
+        TextButton playButton2 = new TextButton("Com tempo", skin);
+        playButton2.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new GameScreen2(game));
                 dispose();
             }
         });
@@ -53,7 +63,8 @@ public class InicialGame implements Screen {
         table.setFillParent(true);
         table.center();
         table.add(title).padBottom(30).row();
-        table.add(playButton).width(200).height(60);
+        table.add(playButton).width(100).height(60);
+        table.add(playButton2).width(300).height(60);
 
         stage.addActor(table);
     }

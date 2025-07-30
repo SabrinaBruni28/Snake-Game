@@ -43,6 +43,7 @@ public class GameScreen implements Screen {
                 int score = snake.getLength() - 1; // ou outra lógica de score
                 game.setScreen(new GameOverScreen(game, score));
                 dispose();
+                return;
             }
 
             timer = 0;
