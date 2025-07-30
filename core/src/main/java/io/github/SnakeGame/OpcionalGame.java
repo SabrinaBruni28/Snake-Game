@@ -72,9 +72,9 @@ public class OpcionalGame implements Screen {
         table.setFillParent(true);
         table.center();
         table.add(title).padBottom(30).row();
-        table.add(playButton).width(50).height(60);
-        table.add(playButton2).width(250).height(60);
-        table.add(playButton3).width(350).height(60);
+        table.add(playButton).width(150).height(60).padRight(20);
+        table.add(playButton2).width(150).height(60).padRight(20);
+        table.add(playButton3).width(150).height(60);
 
         stage.addActor(table);
     }
