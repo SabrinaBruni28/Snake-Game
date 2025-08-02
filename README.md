@@ -21,7 +21,7 @@ Neste jogo, você controla uma cobra que cresce ao comer alimentos. O objetivo �
 
 ## 🚀 Baixe e Jogue
 
-> 📦 [Clique aqui para baixar o jogo (.zip)](lwjgl3/build/libs/SnakeGame-1.0.0.jar)
+> 📦 [Clique aqui para baixar o jogo (.zip)](https://github.com/SabrinaBruni28/Snake-Game/raw/main/lwjgl3/build/libs/SnakeGame-1.0.0.jar)
 
 Após baixar:
 1. Execute com um clique duplo ou pelo terminal:
