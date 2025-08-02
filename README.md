@@ -1,37 +1,47 @@
-# SnakeGame
+# 🐍 Snake Game
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+Um jogo da cobrinha feito com [LibGDX](https://libgdx.com/), desenvolvido em Java.
 
-This project was generated with a template including simple application launchers and a main class extending `Game` that sets the first screen.
+Neste jogo, você controla uma cobra que cresce ao comer alimentos. O objetivo é sobreviver o maior tempo possível sem bater nas paredes ou em si mesma. O jogo possui **três modos diferentes**, incluindo desafios com tempo e ordem!
 
-## Platforms
+---
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
-- `ios`: iOS mobile platform using RoboVM.
-- `html`: Web platform using GWT and WebGL. Supports only Java projects.
+## 🎮 Modos de Jogo
 
-## Gradle
+- **Normal**  
+  Jogue no ritmo tradicional. Coma alimentos, cresça e evite colisões.
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+- **Com tempo**  
+  Você tem tempo limitado para comer todos os alimentos que estão na tela. Perde se o tempo acabar.
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `html:dist`: compiles GWT sources. The compiled application can be found at `html/build/dist`: you can use any HTTP server to deploy it.
-- `html:superDev`: compiles GWT sources and runs the application in SuperDev mode. It will be available at [localhost:8080/html](http://localhost:8080/html). Use only during development.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
+- **Com tempo e ordem**  
+  Além do tempo, você precisa comer os alimentos na ordem correta. Perde também se comer na ordem errada.
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+---
+
+## 🚀 Baixe e Jogue
+
+> 📦 [Clique aqui para baixar o jogo (.zip)](lwjgl3/build/libs/SnakeGame-1.0.0.jar)
+
+Após baixar:
+1. Execute com um clique duplo ou pelo terminal:
+   ```bash
+   java -jar Snake-Game.jar
+   ```
+
+---
+
+## 🛠️ Tecnologias Usadas
+
+- [LibGDX](https://libgdx.com/) (Java Game Framework)
+- GWT (para exportação Web)
+- Scene2D UI (menus)
+- Gradle (build system)
+
+---
+
+## ✨ Autor(a)
+
+Desenvolvido por [Sabrina](https://github.com/SabrinaBruni28)
+
+---

@@ -6,7 +6,6 @@ gradle-app.setting
 /android/build/
 /core/build/
 /lwjgl2/build/
-/lwjgl3/build/
 /html/build/
 /teavm/build/
 /ios/build/
@@ -14,6 +13,10 @@ gradle-app.setting
 /headless/build/
 /server/build/
 /shared/build/
+
+/lwjgl3/build/*
+!lwjgl3/build/libs/
+!lwjgl3/build/libs/SnakeGame-1.0.0.jar
 
 ## Java:
 *.class
