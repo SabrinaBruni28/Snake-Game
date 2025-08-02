@@ -14,6 +14,7 @@ public class Main extends Game {
         music = Gdx.audio.newMusic(Gdx.files.internal("music/music.mp3"));
         music.setLooping(true);
         music.setVolume(0.5f);
+        music.play();
         setScreen(new InicialGame(this));
     }
 
