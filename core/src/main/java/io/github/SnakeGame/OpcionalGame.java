@@ -25,6 +25,7 @@ public class OpcionalGame implements Screen {
 
     public OpcionalGame(Main game) {
         this.game = game;
+        game.music.play();
     }
 
     @Override
@@ -45,6 +46,7 @@ public class OpcionalGame implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new GameScreen(game));
+                game.music.stop();
                 dispose();
             }
         });
@@ -54,6 +56,7 @@ public class OpcionalGame implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new GameScreen2(game));
+                game.music.stop();
                 dispose();
             }
         });
@@ -63,6 +66,7 @@ public class OpcionalGame implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new GameScreen3(game));
+                game.music.stop();
                 dispose();
             }
         });

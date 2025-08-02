@@ -25,6 +25,7 @@ public class InicialGame implements Screen {
 
     public InicialGame(Main game) {
         this.game = game;
+        game.music.play();
     }
 
     @Override
@@ -84,6 +85,7 @@ public class InicialGame implements Screen {
     @Override public void pause() {}
     @Override public void resume() {}
     @Override public void hide() {}
+
     @Override public void dispose() {
         stage.dispose();
         shapeRenderer.dispose();

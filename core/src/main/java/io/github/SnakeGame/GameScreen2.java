@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
 
 public class GameScreen2 extends AbstractGameScreen {
     private ArrayList<Food> food;
-    private float timeRemaining = 80f;
+    private float timeRemaining = 75f;
 
     public GameScreen2(Main game) {
         super(game);

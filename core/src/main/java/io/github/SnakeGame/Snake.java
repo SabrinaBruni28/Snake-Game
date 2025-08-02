@@ -1,6 +1,7 @@
 package io.github.SnakeGame;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -8,14 +9,18 @@ import com.badlogic.gdx.utils.Array;
 public class Snake {
     private Array<Vector2> body = new Array<>();
     private Direction direction = Direction.RIGHT;
+
     private static final int GRID_SIZE = 20;
     private static final int GRID_WIDTH = Gdx.graphics.getWidth() / GRID_SIZE;
     private static final int GRID_HEIGHT = Gdx.graphics.getHeight() / GRID_SIZE;
+
+    private Sound sound;
 
     private int velocity = 1; // velocidade de movimento, pode ser ajustada
 
     public Snake() {
         body.add(new Vector2(5, 5));
+        sound = Gdx.audio.newSound(Gdx.files.internal("music/select.mp3"));
     }
 
     public void move() {
@@ -55,7 +60,12 @@ public class Snake {
     }
 
     public boolean isCollidingWith(Food food) {
-        return body.first().epsilonEquals(food.getPosition(), 0.1f);
+        boolean collide = body.first().epsilonEquals(food.getPosition(), 0.1f);
+        if (collide) {
+            long soundId = sound.play();
+            sound.setVolume(soundId, 0.5f);
+        }
+        return collide;
     }
 
     public boolean isCollidingWithSelf() {

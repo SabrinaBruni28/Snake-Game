@@ -2,6 +2,7 @@ package io.github.SnakeGame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,6 +25,7 @@ public class WinScreen implements Screen {
     private Skin skin;
     private Stage stage;
     private SpriteBatch spriteBatch;
+    private Sound sound;
 
     private Array<ParticleWrapper> effects;
     private long lastUpdateTime;
@@ -44,6 +46,10 @@ public class WinScreen implements Screen {
 
     @Override
     public void show() {
+        sound = Gdx.audio.newSound(Gdx.files.internal("music/winning.mp3"));
+        long soundId = sound.play();
+        sound.setVolume(soundId, 0.3f);
+
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         spriteBatch = new SpriteBatch();

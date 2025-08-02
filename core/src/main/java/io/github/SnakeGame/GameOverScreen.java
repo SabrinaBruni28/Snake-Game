@@ -2,6 +2,7 @@ package io.github.SnakeGame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,6 +20,7 @@ public class GameOverScreen implements Screen {
 
     private Stage stage;
     private Skin skin;
+    private Sound sound;
 
     public GameOverScreen(Main game, int score) {
         this.game = game;
@@ -27,6 +29,10 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void show() {
+        sound = Gdx.audio.newSound(Gdx.files.internal("music/game-over.mp3"));
+        long soundId = sound.play();
+        sound.setVolume(soundId, 0.3f);
+
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
