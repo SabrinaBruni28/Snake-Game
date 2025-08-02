@@ -39,7 +39,7 @@ public class GameScreen implements Screen {
                 food.respawn();
             }
             
-            else if (snake.isCollidingWithSelf() || snake.isOutOfBounds(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())) {
+            else if (snake.isCollidingWithSelf() || snake.isOutOfBounds()) {
                 int score = snake.getLength() - 1; // ou outra lógica de score
                 game.setScreen(new GameOverScreen(game, score));
                 dispose();

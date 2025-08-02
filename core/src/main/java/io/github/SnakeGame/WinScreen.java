@@ -52,7 +52,8 @@ public class WinScreen implements Screen {
         exitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
+                game.setScreen(new InicialGame(game));
+                dispose();
             }
         });
 

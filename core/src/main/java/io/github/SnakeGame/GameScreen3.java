@@ -37,7 +37,7 @@ public class GameScreen3 implements Screen {
         fontSmall.getData().setScale(1f);
 
         fontLarge = new BitmapFont();
-        fontLarge.getData().setScale(1.5f);
+        fontLarge.getData().setScale(1.3f);
         shapeRenderer = new ShapeRenderer();
         snake = new Snake();
         food = new ArrayList<>();
@@ -64,7 +64,7 @@ public class GameScreen3 implements Screen {
         if (timer >= MOVE_INTERVAL) {
             snake.move();
 
-            if (snake.isCollidingWithSelf() || snake.isOutOfBounds(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())) {
+            if (snake.isCollidingWithSelf() || snake.isOutOfBounds()) {
                 int score = snake.getLength() - 1;
                 game.setScreen(new GameOverScreen(game, score));
                 dispose();

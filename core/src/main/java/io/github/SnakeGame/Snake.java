@@ -1,5 +1,6 @@
 package io.github.SnakeGame;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -7,6 +8,10 @@ import com.badlogic.gdx.utils.Array;
 public class Snake {
     private Array<Vector2> body = new Array<>();
     private Direction direction = Direction.RIGHT;
+    private static final int GRID_SIZE = 20;
+    private static final int GRID_WIDTH = Gdx.graphics.getWidth() / GRID_SIZE;
+    private static final int GRID_HEIGHT = Gdx.graphics.getHeight() / GRID_SIZE;
+
     private int velocity = 1; // velocidade de movimento, pode ser ajustada
 
     public Snake() {
@@ -63,8 +68,8 @@ public class Snake {
         return false;
     }
 
-    public boolean isOutOfBounds(int width, int height) {
+    public boolean isOutOfBounds() {
         Vector2 head = body.first();
-        return head.x < 0 || head.x >= width || head.y < 0 || head.y >= height;
+        return head.x < 0 || head.x >= GRID_WIDTH || head.y < 0 || head.y >= GRID_HEIGHT;
     }
 }

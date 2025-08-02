@@ -57,7 +57,7 @@ public class GameScreen2 implements Screen {
         if (timer >= MOVE_INTERVAL) {
             snake.move();
 
-            if (snake.isCollidingWithSelf() || snake.isOutOfBounds(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())) {
+            if (snake.isCollidingWithSelf() || snake.isOutOfBounds()) {
                 int score = snake.getLength() - 1;
                 game.setScreen(new GameOverScreen(game, score));
                 dispose();
