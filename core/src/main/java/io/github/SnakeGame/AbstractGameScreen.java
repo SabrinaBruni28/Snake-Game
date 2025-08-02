@@ -19,7 +19,7 @@ public abstract class AbstractGameScreen implements Screen {
     protected float timer = 0;
     protected float touchStartX, touchStartY;
 
-    protected final float MOVE_INTERVAL = 0.2f;
+    protected final float MOVE_INTERVAL = 0.13f;
     protected final float SWIPE_THRESHOLD = 50f;
 
     public AbstractGameScreen(Main game) {
@@ -57,11 +57,13 @@ public abstract class AbstractGameScreen implements Screen {
                             snake.setDirection(Direction.LEFT);
                         }
                     }
-                } else {
+                } 
+                else {
                     if (Math.abs(deltaY) > SWIPE_THRESHOLD) {
                         if (deltaY > 0) {
                             snake.setDirection(Direction.DOWN);
-                        } else {
+                        } 
+                        else {
                             snake.setDirection(Direction.UP);
                         }
                     }
@@ -78,12 +80,12 @@ public abstract class AbstractGameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        snake.draw(shapeRenderer);
-        drawFood();
+            snake.draw(shapeRenderer);
+            drawFood();
         shapeRenderer.end();
 
         batch.begin();
-        drawUI();
+            drawUI();
         batch.end();
     }
 
@@ -106,10 +108,10 @@ public abstract class AbstractGameScreen implements Screen {
     }
 
     protected void handleInput() {
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) snake.setDirection(Direction.UP);
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) snake.setDirection(Direction.DOWN);
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) snake.setDirection(Direction.LEFT);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) snake.setDirection(Direction.RIGHT);
+        else if (Gdx.input.isKeyPressed(Input.Keys.UP)) snake.setDirection(Direction.UP);
+        else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) snake.setDirection(Direction.DOWN);
+        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) snake.setDirection(Direction.RIGHT);
     }
 
     protected void endGame(boolean won) {
@@ -123,9 +125,9 @@ public abstract class AbstractGameScreen implements Screen {
     }
 
     protected abstract void initFood();
-    protected abstract void handleFoodCollisions();
     protected abstract void drawFood();
     protected abstract void drawUI();
+    protected abstract void handleFoodCollisions();
 
     @Override public void resize(int width, int height) {}
     @Override public void pause() {}
