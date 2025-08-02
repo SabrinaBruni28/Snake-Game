@@ -16,7 +16,7 @@ public class GameScreen3 implements Screen {
     private ArrayList<Food> food;
     private ShapeRenderer shapeRenderer;
 
-    private float timeRemaining = 180f;
+    private float timeRemaining = 185f;
     private int currentTargetId = 1;
 
     private float timer = 0;

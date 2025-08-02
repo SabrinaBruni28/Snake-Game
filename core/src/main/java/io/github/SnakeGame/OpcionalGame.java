@@ -39,7 +39,6 @@ public class OpcionalGame implements Screen {
         Label title = new Label("Qual tipo de jogo?", skin, "default");
         title.setFontScale(2);
         title.setAlignment(Align.center);
-        title.setX(500);
 
         TextButton playButton = new TextButton("Normal", skin);
         playButton.addListener(new ChangeListener() {
@@ -71,10 +70,11 @@ public class OpcionalGame implements Screen {
         Table table = new Table();
         table.setFillParent(true);
         table.center();
-        table.add(title).padBottom(30).row();
-        table.add(playButton).width(150).height(60).padRight(20);
-        table.add(playButton2).width(150).height(60).padRight(20);
-        table.add(playButton3).width(150).height(60);
+        table.add(title).expandX().center().padBottom(30).row();
+
+        table.add(playButton).width(250).height(60).padBottom(20).row();
+        table.add(playButton2).width(250).height(60).padBottom(20).row();
+        table.add(playButton3).width(250).height(60);
 
         stage.addActor(table);
     }
