@@ -31,6 +31,13 @@ Após baixar:
 
 ---
 
+## 🌐 Jogue Online
+> 🕹️ [Clique aqui para jogar na Web (via GitHub Pages)](https://sabrinabruni28.github.io/Snake-Game/)
+
+Nenhuma instalação necessária! Basta acessar o link no navegador.
+
+---
+
 ## 🛠️ Tecnologias Usadas
 
 - [LibGDX](https://libgdx.com/) (Java Game Framework)
