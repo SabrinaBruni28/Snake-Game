@@ -19,6 +19,8 @@ public abstract class AbstractGameScreen implements Screen {
     protected float timer = 0;
     protected float touchStartX, touchStartY;
 
+    protected boolean directionChanged = false;
+
     protected final float MOVE_INTERVAL = 0.13f;
     protected final float SWIPE_THRESHOLD = 50f;
 
@@ -48,26 +50,32 @@ public abstract class AbstractGameScreen implements Screen {
                 float deltaX = screenX - touchStartX;
                 float deltaY = screenY - touchStartY;
 
-                if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-                        if (deltaX > 0) {
-                            snake.setDirection(Direction.RIGHT);
-                        } 
-                        else {
-                            snake.setDirection(Direction.LEFT);
+                if (!directionChanged) {
+                    // Lógica de swipe
+                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                        if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+                            if (deltaX > 0) {
+                                snake.setDirection(Direction.RIGHT);
+                                directionChanged = true;
+                            } else {
+                                snake.setDirection(Direction.LEFT);
+                                directionChanged = true;
+                            }
                         }
-                    }
-                } 
-                else {
-                    if (Math.abs(deltaY) > SWIPE_THRESHOLD) {
-                        if (deltaY > 0) {
-                            snake.setDirection(Direction.DOWN);
-                        } 
-                        else {
-                            snake.setDirection(Direction.UP);
+                    } 
+                    else {
+                        if (Math.abs(deltaY) > SWIPE_THRESHOLD) {
+                            if (deltaY > 0) {
+                                snake.setDirection(Direction.DOWN);
+                                directionChanged = true;
+                            } else {
+                                snake.setDirection(Direction.UP);
+                                directionChanged = true;
+                            }
                         }
                     }
                 }
+
                 return true;
             }
         });
@@ -96,6 +104,8 @@ public abstract class AbstractGameScreen implements Screen {
         if (timer >= MOVE_INTERVAL) {
             snake.move();
 
+            directionChanged = false;
+
             if (snake.isCollidingWithSelf() || snake.isOutOfBounds()) {
                 endGame(false);
                 return;
@@ -108,10 +118,24 @@ public abstract class AbstractGameScreen implements Screen {
     }
 
     protected void handleInput() {
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) snake.setDirection(Direction.LEFT);
-        else if (Gdx.input.isKeyPressed(Input.Keys.UP)) snake.setDirection(Direction.UP);
-        else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) snake.setDirection(Direction.DOWN);
-        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) snake.setDirection(Direction.RIGHT);
+        if (directionChanged) return;
+
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            snake.setDirection(Direction.LEFT);
+            directionChanged = true;
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            snake.setDirection(Direction.UP);
+            directionChanged = true;
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            snake.setDirection(Direction.DOWN);
+            directionChanged = true;
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            snake.setDirection(Direction.RIGHT);
+            directionChanged = true;
+        }
     }
 
     protected void endGame(boolean won) {
