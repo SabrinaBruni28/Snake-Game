@@ -6,13 +6,15 @@ gradle-app.setting
 /android/build/
 /core/build/
 /lwjgl2/build/
-/html/build/
 /teavm/build/
 /ios/build/
 /ios-moe/build/
 /headless/build/
 /server/build/
 /shared/build/
+
+/html/build/*
+!/html/build/dist/
 
 /lwjgl3/build/*
 !lwjgl3/build/libs/
