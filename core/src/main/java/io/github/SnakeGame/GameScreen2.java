@@ -20,6 +20,8 @@ public class GameScreen2 implements Screen {
 
     private float timer = 0;
     private final float MOVE_INTERVAL = 0.2f;
+    private float touchStartX, touchStartY;
+    private final float SWIPE_THRESHOLD = 50f; // distância mínima para considerar swipe
 
     private SpriteBatch batch;
     private BitmapFont font;
@@ -39,6 +41,40 @@ public class GameScreen2 implements Screen {
         for (int i = 0; i < 50; i++) {
             food.add(new Food(i+1));
         }
+
+        Gdx.input.setInputProcessor(new com.badlogic.gdx.InputAdapter() {
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                touchStartX = screenX;
+                touchStartY = screenY;
+                return true;
+            }
+
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                float deltaX = screenX - touchStartX;
+                float deltaY = screenY - touchStartY;
+
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+                        if (deltaX > 0) {
+                            snake.setDirection(Direction.RIGHT);
+                        } else {
+                            snake.setDirection(Direction.LEFT);
+                        }
+                    }
+                } else {
+                    if (Math.abs(deltaY) > SWIPE_THRESHOLD) {
+                        if (deltaY > 0) {
+                            snake.setDirection(Direction.DOWN);
+                        } else {
+                            snake.setDirection(Direction.UP);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
     }
 
     @Override
