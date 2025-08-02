@@ -33,11 +33,12 @@ public class GameOverScreen implements Screen {
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
         Label gameOverLabel = new Label("Game Over", skin, "default");
-        gameOverLabel.setFontScale(2);
+        gameOverLabel.setFontScale(3);
+        gameOverLabel.setColor(1, 0, 0, 1);
         gameOverLabel.setAlignment(Align.center);
 
         Label scoreLabel = new Label("Pontuação: " + score, skin);
-        scoreLabel.setFontScale(1.2f);
+        scoreLabel.setFontScale(1.5f);
 
         TextButton retryButton = new TextButton("Jogar Novamente", skin);
         retryButton.addListener(new ChangeListener() {

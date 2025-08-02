@@ -16,7 +16,7 @@ public class GameScreen2 implements Screen {
     private ArrayList<Food> food;
     private ShapeRenderer shapeRenderer;
 
-    private float timeRemaining = 60f; // 60 segundos, por exemplo
+    private float timeRemaining = 80f;
 
     private float timer = 0;
     private final float MOVE_INTERVAL = 0.2f;

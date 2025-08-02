@@ -16,7 +16,7 @@ public class GameScreen3 implements Screen {
     private ArrayList<Food> food;
     private ShapeRenderer shapeRenderer;
 
-    private float timeRemaining = 185f;
+    private float timeRemaining = 250f;
     private int currentTargetId = 1;
 
     private float timer = 0;
@@ -41,7 +41,7 @@ public class GameScreen3 implements Screen {
         shapeRenderer = new ShapeRenderer();
         snake = new Snake();
         food = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 30; i++) {
             food.add(new Food(i+1));
         }
 

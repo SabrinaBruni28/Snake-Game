@@ -37,7 +37,7 @@ public class InicialGame implements Screen {
         shapeRenderer = new ShapeRenderer();
 
         Label title = new Label("Snake Game", skin, "default");
-        title.setFontScale(2);
+        title.setFontScale(5);
         title.setAlignment(Align.center);
 
         TextButton playButton = new TextButton("Jogar", skin);
