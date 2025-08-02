@@ -15,7 +15,12 @@ t:ui/font-subtitle.fnt:ui/font-subtitle-7a54a36c16a2e92426843c7758eac9b8.fnt:211
 t:ui/uiskin.atlas:ui/uiskin-228c38479421e75a43608fce878f15b3.atlas:5402:application/unknown:1
 t:ui/uiskin.json:ui/uiskin-50b4997412ab22133c57a87ae88d03d9.json:16175:application/json:1
 t:ui/font-window.fnt:ui/font-window-73e4ef96b1243364b96416c980322397.fnt:21146:application/unknown:1
-t:assets.txt:assets-2f1c5b2eb89888b5551ed9ebca303ea5.txt:330:text/plain:1
+t:assets.txt:assets-c7babb79a739cb73d72b3e7bb0edb408.txt:401:text/plain:1
+d:music:music:0:application/unknown:1
+a:music/select.mp3:music/select-f00692baa141fa9ee2f2c8e56cacd0c4.mp3:5015:audio/mpeg:1
+a:music/game-over.mp3:music/game-over-8545000ca348368ba198d333bb7b94a9.mp3:65201:audio/mpeg:1
+a:music/music.mp3:music/music-d378e827ee9f44a2f60b339e1a32ca44.mp3:1891683:audio/mpeg:1
+a:music/winning.mp3:music/winning-bb5f2a7623f3e607520488e48895df64.mp3:160496:audio/mpeg:1
 b:hs_err_pid17563.log:hs_err_pid17563-0a54af914362be46ed916c41b7505a0f.log:187910:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:particles.fragment-b90524761fdf09b0a836056d590c30b8.glsl:820:application/unknown:1
 t:com/badlogic/gdx/graphics/g3d/particles/particles.vertex.glsl:particles.vertex-f25b8b2fae10b9bfa09bfdd484923148.glsl:2886:application/unknown:1
