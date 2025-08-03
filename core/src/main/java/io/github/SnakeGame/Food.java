@@ -1,5 +1,7 @@
 package io.github.SnakeGame;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class Food {
     private Vector2 position;
@@ -56,5 +59,35 @@ public class Food {
         int x = MathUtils.random(0, GRID_WIDTH - 1);
         int y = MathUtils.random(0, GRID_HEIGHT - 1);
         position.set(x, y);
+    }
+
+    public void respawn(ArrayList<Food> existingFoods, Array<Vector2> snakeBody) {
+        boolean positionOk;
+        do {
+            int x = MathUtils.random(0, GRID_WIDTH - 1);
+            int y = MathUtils.random(0, GRID_HEIGHT - 1);
+            position.set(x, y);
+
+            positionOk = true;
+
+            // Verifica colisão com outras comidas
+            for (Food f : existingFoods) {
+                if (f != this && f.getPosition().epsilonEquals(position, 0.01f)) {
+                    positionOk = false;
+                    break;
+                }
+            }
+
+            // Verifica colisão com o corpo da cobra
+            if (positionOk) {
+                for (Vector2 part : snakeBody) {
+                    if (part.epsilonEquals(position, 0.01f)) {
+                        positionOk = false;
+                        break;
+                    }
+                }
+            }
+
+        } while (!positionOk);
     }
 }

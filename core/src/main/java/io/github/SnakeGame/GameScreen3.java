@@ -1,8 +1,7 @@
 package io.github.SnakeGame;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
@@ -30,10 +29,13 @@ public class GameScreen3 extends AbstractGameScreen {
 
     @Override
     protected void initFood() {
-        food = new ArrayList<>();
+        food = new ArrayList<Food>();
         for (int i = 0; i < 30; i++) {
-            food.add(new Food(i + 1));
+            Food newFood = new Food(i + 1);
+            newFood.respawn(food, snake.getBody());
+            food.add(newFood);
         }
+
         food.sort((a, b) -> Integer.compare(a.getId(), b.getId()));
     }
 

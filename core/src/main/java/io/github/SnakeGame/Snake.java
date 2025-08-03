@@ -82,4 +82,8 @@ public class Snake {
         Vector2 head = body.first();
         return head.x < 0 || head.x >= GRID_WIDTH || head.y < 0 || head.y >= GRID_HEIGHT;
     }
+
+    public Array<Vector2> getBody() {
+        return body;
+    }
 }
