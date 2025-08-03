@@ -35,12 +35,15 @@ public abstract class AbstractGameScreen implements Screen {
 
     @Override
     public void show() {
-        shapeRenderer = new ShapeRenderer();
         batch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
+        
         font = new BitmapFont();
         font.getData().setScale(2f);
+
         snake = new Snake();
         initFood();
+        initTime();
 
         Gdx.input.setInputProcessor(new com.badlogic.gdx.InputAdapter() {
             @Override
@@ -157,6 +160,7 @@ public abstract class AbstractGameScreen implements Screen {
     protected abstract void drawFood();
     protected abstract void drawUI();
     protected abstract void handleFoodCollisions();
+    protected abstract void initTime();
 
     @Override public void resize(int width, int height) {}
     @Override public void pause() {}

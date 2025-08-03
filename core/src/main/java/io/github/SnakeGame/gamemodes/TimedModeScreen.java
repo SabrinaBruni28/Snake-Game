@@ -23,6 +23,11 @@ public class TimedModeScreen extends AbstractGameScreen {
     }
 
     @Override
+    protected void initTime() {
+        timeRemaining = 75f; // 1 minuto e 15 segundos
+    }
+
+    @Override
     protected void handleFoodCollisions() {
         Iterator<Food> iterator = food.iterator();
         while (iterator.hasNext()) {

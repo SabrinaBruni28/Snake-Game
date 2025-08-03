@@ -12,8 +12,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Food {
-    private Vector2 position;
     private int id;
+    private Vector2 position;
 
     private static final int GRID_SIZE = 20;
     private static final int GRID_WIDTH = Gdx.graphics.getWidth() / GRID_SIZE;

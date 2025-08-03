@@ -113,7 +113,10 @@ public class OpcionalsGameScreen implements Screen {
         shapeRenderer.end();
     }
 
-    @Override public void resize(int width, int height) { stage.getViewport().update(width, height, true); }
+    @Override public void resize(int width, int height) { 
+        stage.getViewport().update(width, height, true); 
+    }
+
     @Override public void pause() {}
     @Override public void resume() {}
     @Override public void hide() {}

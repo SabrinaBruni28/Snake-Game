@@ -9,8 +9,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class OrderedTimedModeScreen extends AbstractGameScreen {
     private ArrayList<Food> food;
-    private float timeRemaining = 180f;
+
     private int currentTargetId = 1;
+    private float timeRemaining = 180f;
 
     private BitmapFont fontSmall;
     private BitmapFont fontLarge;
@@ -22,7 +23,6 @@ public class OrderedTimedModeScreen extends AbstractGameScreen {
     @Override
     public void show() {
         super.show();
-        currentTargetId = 1;
         fontSmall = new BitmapFont();
         fontSmall.getData().setScale(1f);
 
@@ -40,6 +40,12 @@ public class OrderedTimedModeScreen extends AbstractGameScreen {
         }
 
         food.sort((a, b) -> Integer.compare(a.getId(), b.getId()));
+    }
+
+    @Override
+    protected void initTime() {
+        currentTargetId = 1;
+        timeRemaining = 180f; // 3 minutos
     }
 
     @Override

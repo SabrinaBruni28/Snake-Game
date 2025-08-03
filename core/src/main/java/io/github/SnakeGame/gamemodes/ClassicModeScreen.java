@@ -20,6 +20,10 @@ public class ClassicModeScreen extends AbstractGameScreen {
         if (snake.isCollidingWith(food)) {
             snake.grow();
             food.respawn(snake.getBody());
+
+            if (food.getPosition().x == -1) {
+                endGame(true); // Vitória: sem espaço para mais comida
+            }
         }
     }
 
@@ -31,5 +35,10 @@ public class ClassicModeScreen extends AbstractGameScreen {
     @Override
     protected void drawUI() {
         // Nada para desenhar em UI nesse modo
+    }
+
+    @Override
+    protected void initTime() {
+        // Nada para inicializar em tempo nesse modo
     }
 }

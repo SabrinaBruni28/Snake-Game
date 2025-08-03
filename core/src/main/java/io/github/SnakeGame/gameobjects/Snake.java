@@ -7,17 +7,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Snake {
+    private Sound sound;
     private Array<Vector2> body = new Array<>();
     private Direction direction = Direction.RIGHT;
 
     private static final int GRID_SIZE = 20;
     private static final int GRID_WIDTH = Gdx.graphics.getWidth() / GRID_SIZE;
     private static final int GRID_HEIGHT = Gdx.graphics.getHeight() / GRID_SIZE;
-
-    private Sound sound;
-
-    private int velocity = 1; // velocidade de movimento, pode ser ajustada
-
+    
     public Snake() {
         body.add(new Vector2(5, 5));
         sound = Gdx.audio.newSound(Gdx.files.internal("music/select.mp3"));
@@ -26,10 +23,10 @@ public class Snake {
     public void move() {
         Vector2 head = body.first().cpy();
         switch (direction) {
-            case UP: head.y += velocity; break;
-            case DOWN: head.y -= velocity; break;
-            case LEFT: head.x -= velocity; break;
-            case RIGHT: head.x += velocity; break;
+            case UP: head.y += 1; break;
+            case DOWN: head.y -= 1; break;
+            case LEFT: head.x -= 1; break;
+            case RIGHT: head.x += 1; break;
         }
         body.insert(0, head);
         body.pop();
@@ -41,10 +38,6 @@ public class Snake {
 
     public int getLength() {
         return body.size;
-    }
-
-    public void setVelocity(int newVelocity) {
-        this.velocity = newVelocity;
     }
 
     public void draw(ShapeRenderer renderer) {
