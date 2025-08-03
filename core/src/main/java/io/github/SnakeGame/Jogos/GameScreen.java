@@ -1,4 +1,7 @@
-package io.github.SnakeGame;
+package io.github.SnakeGame.Jogos;
+
+import io.github.SnakeGame.Main;
+import io.github.SnakeGame.Objects.Food;
 
 public class GameScreen extends AbstractGameScreen {
     private Food food;

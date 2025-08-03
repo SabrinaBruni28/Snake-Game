@@ -1,9 +1,12 @@
-package io.github.SnakeGame;
+package io.github.SnakeGame.Jogos;
 
 import java.util.Iterator;
 import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+
+import io.github.SnakeGame.Main;
+import io.github.SnakeGame.Objects.Food;
 
 public class GameScreen3 extends AbstractGameScreen {
     private ArrayList<Food> food;
