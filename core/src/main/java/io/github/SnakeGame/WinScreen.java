@@ -1,5 +1,6 @@
 package io.github.SnakeGame;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
@@ -55,7 +56,9 @@ public class WinScreen implements Screen {
         spriteBatch = new SpriteBatch();
         effects = new Array<>();
         lastUpdateTime = TimeUtils.millis();
-        spawnNewEffects();
+        if (!Gdx.app.getType().equals(Application.ApplicationType.WebGL)) {
+            spawnNewEffects(); // só ativa partículas fora do HTML5
+        }
 
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
@@ -109,12 +112,14 @@ public class WinScreen implements Screen {
         stage.act(delta);
         stage.draw();
 
-        spriteBatch.begin();
-        for (ParticleWrapper wrapper : effects) {
-            wrapper.effect.update(Gdx.graphics.getDeltaTime());
-            wrapper.effect.draw(spriteBatch, delta);
+        if (!Gdx.app.getType().equals(Application.ApplicationType.WebGL)) {
+            spriteBatch.begin();
+            for (ParticleWrapper wrapper : effects) {
+                wrapper.effect.update(Gdx.graphics.getDeltaTime());
+                wrapper.effect.draw(spriteBatch, delta);
+            }
+            spriteBatch.end();
         }
-        spriteBatch.end();
     }
 
     private void spawnNewEffects() {
