@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class GameScreen3 extends AbstractGameScreen {
     private ArrayList<Food> food;
-    private float timeRemaining = 150f;
+    private float timeRemaining = 180f;
     private int currentTargetId = 1;
 
     private BitmapFont fontSmall;
