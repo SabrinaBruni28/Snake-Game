@@ -17,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.TimeUtils;
 
 public class WinScreen implements Screen {
     private final Main game;
@@ -29,8 +28,6 @@ public class WinScreen implements Screen {
     private Sound sound;
 
     private Array<ParticleWrapper> effects;
-    private long lastUpdateTime;
-    private static final float INTERVAL = 0.5f;
 
     private static class ParticleWrapper {
         ParticleEffect effect;
@@ -55,7 +52,6 @@ public class WinScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
         spriteBatch = new SpriteBatch();
         effects = new Array<>();
-        lastUpdateTime = TimeUtils.millis();
         if (!Gdx.app.getType().equals(Application.ApplicationType.WebGL)) {
             spawnNewEffects(); // só ativa partículas fora do HTML5
         }
@@ -103,49 +99,56 @@ public class WinScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // Atualiza os efeitos a cada INTERVAL segundos
-        if ((TimeUtils.timeSinceMillis(lastUpdateTime)) > (INTERVAL * 1000)) {
-            resetEffects();
-            lastUpdateTime = TimeUtils.millis();
-        }
-
         stage.act(delta);
         stage.draw();
 
         if (!Gdx.app.getType().equals(Application.ApplicationType.WebGL)) {
             spriteBatch.begin();
+
+            Array<ParticleWrapper> finished = new Array<>();
             for (ParticleWrapper wrapper : effects) {
-                wrapper.effect.update(Gdx.graphics.getDeltaTime());
-                wrapper.effect.draw(spriteBatch, delta);
+                ParticleEffect effect = wrapper.effect;
+                effect.update(delta);
+                effect.draw(spriteBatch, delta);
+
+                if (effect.isComplete()) {
+                    finished.add(wrapper);
+                }
             }
+
+            // remove efeitos finalizados e cria novos
+            for (ParticleWrapper wrapper : finished) {
+                effects.removeValue(wrapper, true);
+                wrapper.effect.dispose();
+                spawnOneEffect();
+            }
+
             spriteBatch.end();
         }
     }
 
+    private void spawnOneEffect() {
+        ParticleEffect effect = new ParticleEffect();
+        effect.load(Gdx.files.internal("particles/particle-animation.p"), Gdx.files.internal("particles/"));
+
+        float x, y;
+        do {
+            x = (float) Math.random() * Gdx.graphics.getWidth();
+            y = (float) Math.random() * Gdx.graphics.getHeight();
+        } while (x > Gdx.graphics.getWidth() * 0.3f && x < Gdx.graphics.getWidth() * 0.7f &&
+                y > Gdx.graphics.getHeight() * 0.3f && y < Gdx.graphics.getHeight() * 0.7f);
+
+        effect.setPosition(x, y);
+        effect.start();
+        effects.add(new ParticleWrapper(effect));
+    }
+
+
     private void spawnNewEffects() {
         effects.clear();
         for (int i = 0; i < 2; i++) {
-            ParticleEffect effect = new ParticleEffect();
-            effect.load(Gdx.files.internal("particles/particle-animation.p"), Gdx.files.internal("particles/"));
-
-            float x, y;
-            do {
-                x = (float) Math.random() * Gdx.graphics.getWidth();
-                y = (float) Math.random() * Gdx.graphics.getHeight();
-            } while (x > Gdx.graphics.getWidth() * 0.3f && x < Gdx.graphics.getWidth() * 0.7f &&
-                     y > Gdx.graphics.getHeight() * 0.3f && y < Gdx.graphics.getHeight() * 0.7f);
-
-            effect.setPosition(x, y);
-            effect.start();
-            effects.add(new ParticleWrapper(effect));
+            spawnOneEffect();
         }
-    }
-
-    private void resetEffects() {
-        for (ParticleWrapper wrapper : effects) {
-            wrapper.effect.dispose();
-        }
-        spawnNewEffects();
     }
 
     @Override public void resize(int width, int height) {
