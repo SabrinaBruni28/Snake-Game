@@ -16,7 +16,7 @@ public class GameScreen extends AbstractGameScreen {
     protected void handleFoodCollisions() {
         if (snake.isCollidingWith(food)) {
             snake.grow();
-            food.respawn();
+            food.respawn(snake.getBody());
         }
     }
 

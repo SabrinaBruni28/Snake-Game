@@ -2,12 +2,14 @@ package io.github.SnakeGame;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {
 
     public Music music;
+    public Screen telaAnterior;
 
     @Override
     public void create() {

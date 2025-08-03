@@ -20,6 +20,7 @@ public class GameScreen3 extends AbstractGameScreen {
     @Override
     public void show() {
         super.show();
+        currentTargetId = 1;
         fontSmall = new BitmapFont();
         fontSmall.getData().setScale(1f);
 

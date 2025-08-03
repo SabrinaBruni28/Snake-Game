@@ -90,4 +90,26 @@ public class Food {
 
         } while (!positionOk);
     }
+
+    public void respawn(Array<Vector2> snakeBody) {
+        boolean positionOk;
+        do {
+            int x = MathUtils.random(0, GRID_WIDTH - 1);
+            int y = MathUtils.random(0, GRID_HEIGHT - 1);
+            position.set(x, y);
+
+            positionOk = true;
+
+            // Verifica colisão com o corpo da cobra
+            if (positionOk) {
+                for (Vector2 part : snakeBody) {
+                    if (part.epsilonEquals(position, 0.01f)) {
+                        positionOk = false;
+                        break;
+                    }
+                }
+            }
+
+        } while (!positionOk);
+    }
 }

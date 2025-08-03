@@ -70,7 +70,7 @@ public class WinScreen implements Screen {
         retryButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new OpcionalGame(game));
+                game.setScreen(game.telaAnterior);
                 dispose();
             }
         });
@@ -80,6 +80,7 @@ public class WinScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new InicialGame(game));
+                game.telaAnterior.dispose();
                 dispose();
             }
         });
