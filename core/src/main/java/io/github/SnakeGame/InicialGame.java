@@ -25,11 +25,12 @@ public class InicialGame implements Screen {
 
     public InicialGame(Main game) {
         this.game = game;
-        game.music.play();
     }
 
     @Override
     public void show() {
+        game.music.play();
+        
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
