@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import io.github.SnakeGame.Telas.InicialGame;
+import io.github.SnakeGame.screens.InicialGameScreen;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {
@@ -17,7 +17,7 @@ public class Main extends Game {
         music = Gdx.audio.newMusic(Gdx.files.internal("music/music.mp3"));
         music.setLooping(true);
         music.setVolume(0.5f);
-        setScreen(new InicialGame(this));
+        setScreen(new InicialGameScreen(this));
     }
 
     @Override

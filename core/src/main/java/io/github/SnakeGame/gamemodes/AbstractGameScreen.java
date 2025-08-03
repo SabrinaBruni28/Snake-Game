@@ -1,16 +1,16 @@
-package io.github.SnakeGame.Jogos;
+package io.github.SnakeGame.gamemodes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import io.github.SnakeGame.Main;
 import com.badlogic.gdx.graphics.GL20;
-import io.github.SnakeGame.Objects.Snake;
-import io.github.SnakeGame.Telas.WinScreen;
-import io.github.SnakeGame.Objects.Direction;
-import io.github.SnakeGame.Telas.GameOverScreen;
+import io.github.SnakeGame.gameobjects.Snake;
+import io.github.SnakeGame.screens.WinScreen;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import io.github.SnakeGame.gameobjects.Direction;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import io.github.SnakeGame.screens.GameOverScreen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public abstract class AbstractGameScreen implements Screen {

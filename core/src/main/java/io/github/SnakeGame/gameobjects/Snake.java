@@ -1,4 +1,4 @@
-package io.github.SnakeGame.Objects;
+package io.github.SnakeGame.gameobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;

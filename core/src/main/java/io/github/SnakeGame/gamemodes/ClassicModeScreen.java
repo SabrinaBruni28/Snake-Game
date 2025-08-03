@@ -1,12 +1,12 @@
-package io.github.SnakeGame.Jogos;
+package io.github.SnakeGame.gamemodes;
 
 import io.github.SnakeGame.Main;
-import io.github.SnakeGame.Objects.Food;
+import io.github.SnakeGame.gameobjects.Food;
 
-public class GameScreen extends AbstractGameScreen {
+public class ClassicModeScreen extends AbstractGameScreen {
     private Food food;
 
-    public GameScreen(Main game) {
+    public ClassicModeScreen(Main game) {
         super(game);
     }
 

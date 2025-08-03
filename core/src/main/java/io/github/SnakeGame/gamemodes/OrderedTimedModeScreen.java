@@ -1,14 +1,13 @@
-package io.github.SnakeGame.Jogos;
+package io.github.SnakeGame.gamemodes;
 
 import java.util.Iterator;
 import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
+import io.github.SnakeGame.Main;
+import io.github.SnakeGame.gameobjects.Food;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-import io.github.SnakeGame.Main;
-import io.github.SnakeGame.Objects.Food;
-
-public class GameScreen3 extends AbstractGameScreen {
+public class OrderedTimedModeScreen extends AbstractGameScreen {
     private ArrayList<Food> food;
     private float timeRemaining = 180f;
     private int currentTargetId = 1;
@@ -16,7 +15,7 @@ public class GameScreen3 extends AbstractGameScreen {
     private BitmapFont fontSmall;
     private BitmapFont fontLarge;
 
-    public GameScreen3(Main game) {
+    public OrderedTimedModeScreen(Main game) {
         super(game);
     }
 

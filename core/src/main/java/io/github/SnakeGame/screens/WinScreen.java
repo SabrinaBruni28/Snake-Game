@@ -1,4 +1,4 @@
-package io.github.SnakeGame.Telas;
+package io.github.SnakeGame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -80,7 +80,7 @@ public class WinScreen implements Screen {
         exitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new InicialGame(game));
+                game.setScreen(new InicialGameScreen(game));
                 game.telaAnterior.dispose();
                 dispose();
             }

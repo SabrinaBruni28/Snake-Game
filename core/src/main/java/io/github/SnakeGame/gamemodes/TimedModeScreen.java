@@ -1,18 +1,16 @@
-package io.github.SnakeGame.Jogos;
+package io.github.SnakeGame.gamemodes;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
-
 import io.github.SnakeGame.Main;
-import io.github.SnakeGame.Objects.Food;
+import io.github.SnakeGame.gameobjects.Food;
 
-public class GameScreen2 extends AbstractGameScreen {
+public class TimedModeScreen extends AbstractGameScreen {
     private ArrayList<Food> food;
     private float timeRemaining = 75f;
 
-    public GameScreen2(Main game) {
+    public TimedModeScreen(Main game) {
         super(game);
     }
 

@@ -1,4 +1,4 @@
-package io.github.SnakeGame.Objects;
+package io.github.SnakeGame.gameobjects;
 
 import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;

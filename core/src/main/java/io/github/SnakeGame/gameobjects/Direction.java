@@ -1,4 +1,4 @@
-package io.github.SnakeGame.Objects;
+package io.github.SnakeGame.gameobjects;
 
 public enum Direction {
     UP, DOWN, LEFT, RIGHT;
