@@ -15,6 +15,10 @@ public class Snake {
 
     private Sound sound;
 
+    private float tongueTimer = 0;
+    private float tongueInterval = 0.5f; // a cada 0.5 segundos troca estado
+    private boolean showTongue = false;
+
     public Snake() {
         body.add(new Vector2(5, 5)); // posição inicial em células
         sound = Gdx.audio.newSound(Gdx.files.internal("music/select.mp3"));
@@ -32,6 +36,14 @@ public class Snake {
         body.pop();
     }
 
+    public void update(float delta) {
+        tongueTimer += delta;
+        if (tongueTimer >= tongueInterval) {
+            showTongue = !showTongue;
+            tongueTimer = 0;
+        }
+    }
+
     public void grow() {
         body.add(new Vector2(body.peek()));
     }
@@ -41,12 +53,20 @@ public class Snake {
     }
 
     public void draw(ShapeRenderer renderer) {
+        drawBody(renderer);
+        drawEyes(renderer);
+        drawTongue(renderer);
+    }
+
+    public void drawBody(ShapeRenderer renderer) {
         // Corpo da cobra
         renderer.setColor(Color.GREEN);
         for (Vector2 part : body) {
             renderer.rect(part.x * GameConfig.CELL_SIZE, part.y * GameConfig.CELL_SIZE, GameConfig.CELL_SIZE, GameConfig.CELL_SIZE);
         }
+    }
 
+    public void drawEyes(ShapeRenderer renderer) {
         // Olhos
         Vector2 head = body.first();
         float cellSize = GameConfig.CELL_SIZE;
@@ -90,6 +110,59 @@ public class Snake {
         renderer.setColor(Color.BLACK);
         renderer.circle(eyeX1, eyeY1, eyeRadius);
         renderer.circle(eyeX2, eyeY2, eyeRadius);
+    }
+
+    public void drawTongue(ShapeRenderer renderer) {
+        // Língua
+        Vector2 head = body.first();
+        float cellSize = GameConfig.CELL_SIZE;
+        float x = head.x * cellSize;
+        float y = head.y * cellSize;
+
+        if (showTongue) {
+            renderer.setColor(Color.RED);
+            float tongueLength = GameConfig.CELL_SIZE * 0.4f;
+            float tongueWidth = 1.8f;
+
+            switch (direction) {
+                case UP:
+                    renderer.rectLine(
+                        x + cellSize / 2f,
+                        y + cellSize,
+                        x + cellSize / 2f,
+                        y + cellSize + tongueLength,
+                        tongueWidth
+                    );
+                    break;
+                case DOWN:
+                    renderer.rectLine(
+                        x + cellSize / 2f,
+                        y,
+                        x + cellSize / 2f,
+                        y - tongueLength,
+                        tongueWidth
+                    );
+                    break;
+                case LEFT:
+                    renderer.rectLine(
+                        x,
+                        y + cellSize / 2f,
+                        x - tongueLength,
+                        y + cellSize / 2f,
+                        tongueWidth
+                    );
+                    break;
+                case RIGHT:
+                    renderer.rectLine(
+                        x + cellSize,
+                        y + cellSize / 2f,
+                        x + cellSize + tongueLength,
+                        y + cellSize / 2f,
+                        tongueWidth
+                    );
+                    break;
+            }
+        }
     }
 
     public void setDirection(Direction newDirection) {

@@ -10,7 +10,7 @@ import io.github.SnakeGame.gameobjects.Food;
 
 public class TimedModeScreen extends AbstractGameScreen {
     private ArrayList<Food> food;
-    private float timeRemaining = 75f;
+    private float timeRemaining = 70f;
 
     public TimedModeScreen(Main game) {
         super(game);
@@ -26,7 +26,7 @@ public class TimedModeScreen extends AbstractGameScreen {
 
     @Override
     protected void initTime() {
-        timeRemaining = 75f; // 1 minuto e 15 segundos
+        timeRemaining = 70f;
     }
 
     @Override

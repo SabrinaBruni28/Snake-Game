@@ -149,6 +149,7 @@ public abstract class AbstractGameScreen implements Screen {
     protected void update(float delta) {
         timer += delta;
         handleInput();
+        snake.update(delta);
 
         if (timer >= MOVE_INTERVAL) {
             snake.move();
