@@ -41,10 +41,55 @@ public class Snake {
     }
 
     public void draw(ShapeRenderer renderer) {
+        // Corpo da cobra
         renderer.setColor(Color.GREEN);
         for (Vector2 part : body) {
             renderer.rect(part.x * GameConfig.CELL_SIZE, part.y * GameConfig.CELL_SIZE, GameConfig.CELL_SIZE, GameConfig.CELL_SIZE);
         }
+
+        // Olhos
+        Vector2 head = body.first();
+        float cellSize = GameConfig.CELL_SIZE;
+        float x = head.x * cellSize;
+        float y = head.y * cellSize;
+
+        float eyeRadius = cellSize * 0.15f;
+        float offset = cellSize * 0.20f;  // distância da borda lateral
+        float backOffset = cellSize * 0.40f; // quão para trás o olho vai ficar
+
+        float eyeX1 = 0, eyeY1 = 0;
+        float eyeX2 = 0, eyeY2 = 0;
+
+        switch (direction) {
+            case UP:
+                eyeX1 = x + offset;
+                eyeY1 = y + cellSize - backOffset;
+                eyeX2 = x + cellSize - offset;
+                eyeY2 = y + cellSize - backOffset;
+                break;
+            case DOWN:
+                eyeX1 = x + offset;
+                eyeY1 = y + backOffset;
+                eyeX2 = x + cellSize - offset;
+                eyeY2 = y + backOffset;
+                break;
+            case LEFT:
+                eyeX1 = x + backOffset;
+                eyeY1 = y + offset;
+                eyeX2 = x + backOffset;
+                eyeY2 = y + cellSize - offset;
+                break;
+            case RIGHT:
+                eyeX1 = x + cellSize - backOffset;
+                eyeY1 = y + offset;
+                eyeX2 = x + cellSize - backOffset;
+                eyeY2 = y + cellSize - offset;
+                break;
+        }
+
+        renderer.setColor(Color.BLACK);
+        renderer.circle(eyeX1, eyeY1, eyeRadius);
+        renderer.circle(eyeX2, eyeY2, eyeRadius);
     }
 
     public void setDirection(Direction newDirection) {
@@ -79,5 +124,9 @@ public class Snake {
 
     public Array<Vector2> getBody() {
         return body;
+    }
+
+    public Direction getCurrentDirection() {
+        return direction;
     }
 }
