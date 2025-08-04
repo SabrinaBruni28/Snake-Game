@@ -95,6 +95,8 @@ public class GameOverScreen implements Screen {
     @Override public void hide() {}
 
     @Override public void dispose() {
+        sound.stop();
+        sound.dispose();
         stage.dispose();
         skin.dispose();
     }

@@ -93,8 +93,9 @@ public class InicialGameScreen implements Screen {
     @Override public void hide() {}
 
     @Override public void dispose() {
+        skin.dispose();
+        font.dispose();
         stage.dispose();
         shapeRenderer.dispose();
-        font.dispose();
     }
 }

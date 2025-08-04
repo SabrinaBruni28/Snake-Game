@@ -121,9 +121,11 @@ public class OpcionalsGameScreen implements Screen {
     @Override public void pause() {}
     @Override public void resume() {}
     @Override public void hide() {}
+
     @Override public void dispose() {
+        font.dispose();
+        skin.dispose();
         stage.dispose();
         shapeRenderer.dispose();
-        font.dispose();
     }
 }

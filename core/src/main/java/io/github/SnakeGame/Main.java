@@ -26,5 +26,8 @@ public class Main extends Game {
             music.stop();
             music.dispose();   
         }
+        if (getScreen() != null) {
+            getScreen().dispose();
+        }
     } 
 }
