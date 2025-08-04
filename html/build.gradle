@@ -150,3 +150,13 @@ java.targetCompatibility = JavaVersion.VERSION_1_8
 sourceSets.main.java.srcDirs = [ "src/main/java/" ]
 
 eclipse.project.name = appName + "-html"
+
+
+tasks.named('dist').configure {
+    doLast {
+        copy {
+            from 'webapp/snake.ico'
+            into "$buildDir/dist"
+        }
+    }
+}
