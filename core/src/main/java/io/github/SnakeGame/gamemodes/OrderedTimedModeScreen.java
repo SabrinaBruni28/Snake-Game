@@ -13,7 +13,7 @@ public class OrderedTimedModeScreen extends AbstractGameScreen {
     private ArrayList<Food> food;
 
     private int currentTargetId = 1;
-    private float timeRemaining = 180f;
+    private float timeRemaining = 150f;
 
     private BitmapFont fontSmall;
     private BitmapFont fontLarge;
@@ -47,7 +47,7 @@ public class OrderedTimedModeScreen extends AbstractGameScreen {
     @Override
     protected void initTime() {
         currentTargetId = 1;
-        timeRemaining = 180f; // 3 minutos
+        timeRemaining = 150f;
     }
 
     @Override

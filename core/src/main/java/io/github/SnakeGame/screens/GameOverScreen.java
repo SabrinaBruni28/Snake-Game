@@ -52,6 +52,7 @@ public class GameOverScreen implements Screen {
         retryButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                sound.stop();
                 game.setScreen(game.telaAnterior);
                 dispose();
             }
@@ -61,6 +62,7 @@ public class GameOverScreen implements Screen {
         exitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                sound.stop();
                 game.setScreen(new InicialGameScreen(game));
                 game.telaAnterior.dispose();
                 dispose();
@@ -95,7 +97,6 @@ public class GameOverScreen implements Screen {
     @Override public void hide() {}
 
     @Override public void dispose() {
-        sound.stop();
         sound.dispose();
         stage.dispose();
         skin.dispose();
