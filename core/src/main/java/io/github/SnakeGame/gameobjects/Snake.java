@@ -4,28 +4,28 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import io.github.SnakeGame.GameConfig;
+
 public class Snake {
-    private Sound sound;
     private Array<Vector2> body = new Array<>();
     private Direction direction = Direction.RIGHT;
 
-    private static final int GRID_SIZE = 20;
-    private static final int GRID_WIDTH = Gdx.graphics.getWidth() / GRID_SIZE;
-    private static final int GRID_HEIGHT = Gdx.graphics.getHeight() / GRID_SIZE;
-    
+    private Sound sound;
+
     public Snake() {
-        body.add(new Vector2(5, 5));
+        body.add(new Vector2(5, 5)); // posição inicial em células
         sound = Gdx.audio.newSound(Gdx.files.internal("music/select.mp3"));
     }
 
     public void move() {
         Vector2 head = body.first().cpy();
         switch (direction) {
-            case UP: head.y += 1; break;
-            case DOWN: head.y -= 1; break;
-            case LEFT: head.x -= 1; break;
+            case UP:    head.y += 1; break;
+            case DOWN:  head.y -= 1; break;
+            case LEFT:  head.x -= 1; break;
             case RIGHT: head.x += 1; break;
         }
         body.insert(0, head);
@@ -41,8 +41,9 @@ public class Snake {
     }
 
     public void draw(ShapeRenderer renderer) {
+        renderer.setColor(Color.GREEN);
         for (Vector2 part : body) {
-            renderer.rect(part.x * 20, part.y * 20, 20, 20);
+            renderer.rect(part.x * GameConfig.CELL_SIZE, part.y * GameConfig.CELL_SIZE, GameConfig.CELL_SIZE, GameConfig.CELL_SIZE);
         }
     }
 
@@ -55,8 +56,8 @@ public class Snake {
     public boolean isCollidingWith(Food food) {
         boolean collide = body.first().epsilonEquals(food.getPosition(), 0.1f);
         if (collide) {
-            long soundId = sound.play();
-            sound.setVolume(soundId, 0.5f);
+            long id = sound.play();
+            sound.setVolume(id, 0.5f);
         }
         return collide;
     }
@@ -73,7 +74,7 @@ public class Snake {
 
     public boolean isOutOfBounds() {
         Vector2 head = body.first();
-        return head.x < 0 || head.x >= GRID_WIDTH || head.y < 0 || head.y >= GRID_HEIGHT;
+        return head.x < 0 || head.x >= GameConfig.GRID_WIDTH || head.y < 0 || head.y >= GameConfig.GRID_HEIGHT;
     }
 
     public Array<Vector2> getBody() {

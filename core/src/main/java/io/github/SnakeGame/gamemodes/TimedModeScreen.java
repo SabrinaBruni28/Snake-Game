@@ -3,6 +3,8 @@ package io.github.SnakeGame.gamemodes;
 import java.util.Iterator;
 import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
+
+import io.github.SnakeGame.GameConfig;
 import io.github.SnakeGame.Main;
 import io.github.SnakeGame.gameobjects.Food;
 
@@ -52,8 +54,13 @@ public class TimedModeScreen extends AbstractGameScreen {
 
     @Override
     protected void drawUI() {
+        float padding = 10f;
+        float y = GameConfig.WORLD_HEIGHT - padding; // distância do topo do mundo
+        float x = padding;
+
         timeRemaining -= Gdx.graphics.getDeltaTime();
-        font.draw(batch, "Tempo: " + (int)timeRemaining, 10, Gdx.graphics.getHeight() - 10);
+        font.draw(batch, "Tempo: " + (int)timeRemaining, x, y);
+
         if (timeRemaining <= 0) {
             endGame(false);
             return;
