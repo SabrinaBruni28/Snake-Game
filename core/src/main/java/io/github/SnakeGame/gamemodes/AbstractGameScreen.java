@@ -76,7 +76,7 @@ public abstract class AbstractGameScreen implements Screen {
             }
 
             @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            public boolean touchDragged(int screenX, int screenY, int pointer) {
                 Vector2 worldTouch = viewport.unproject(new Vector2(screenX, screenY));
                 float deltaX = worldTouch.x - touchStartX;
                 float deltaY = worldTouch.y - touchStartY;
@@ -86,23 +86,27 @@ public abstract class AbstractGameScreen implements Screen {
                         if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
                             if (deltaX > 0) {
                                 snake.setDirection(Direction.RIGHT);
-                                directionChanged = true;
                             } else {
                                 snake.setDirection(Direction.LEFT);
-                                directionChanged = true;
                             }
+                            directionChanged = true;
                         }
-                    } else {
+                    } 
+                    else {
                         if (Math.abs(deltaY) > SWIPE_THRESHOLD) {
                             if (deltaY > 0) {
                                 snake.setDirection(Direction.UP);
-                                directionChanged = true;
-                            } else {
+                            } 
+                            else {
                                 snake.setDirection(Direction.DOWN);
-                                directionChanged = true;
                             }
+                            directionChanged = true;
                         }
                     }
+                }
+                else {
+                    touchStartX = worldTouch.x;
+                    touchStartY = worldTouch.y;
                 }
 
                 return true;
