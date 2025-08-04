@@ -21,13 +21,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class WinScreen implements Screen {
     private final Main game;
-    private final int score;
-
+    
     private Skin skin;
+    private Sound sound;
     private Stage stage;
     private SpriteBatch spriteBatch;
-    private Sound sound;
-
+    
+    private final int score;
     private Array<ParticleWrapper> effects;
 
     private static class ParticleWrapper {

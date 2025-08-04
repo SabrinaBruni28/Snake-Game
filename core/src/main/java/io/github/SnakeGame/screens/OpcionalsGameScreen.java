@@ -22,10 +22,11 @@ import io.github.SnakeGame.gamemodes.OrderedTimedModeScreen;
 
 public class OpcionalsGameScreen implements Screen {
     private final Main game;
-    private Stage stage;
-    private ShapeRenderer shapeRenderer;
-    private BitmapFont font;
+
     private Skin skin;
+    private Stage stage;
+    private BitmapFont font;
+    private ShapeRenderer shapeRenderer;
 
     public OpcionalsGameScreen(Main game) {
         this.game = game;

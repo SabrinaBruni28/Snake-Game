@@ -19,10 +19,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class InicialGameScreen implements Screen {
     private final Main game;
-    private Stage stage;
-    private ShapeRenderer shapeRenderer;
-    private BitmapFont font;
+
     private Skin skin;
+    private Stage stage;
+    private BitmapFont font;
+    private ShapeRenderer shapeRenderer;
 
     public InicialGameScreen(Main game) {
         this.game = game;
