@@ -95,10 +95,10 @@ public abstract class AbstractGameScreen implements Screen {
                     } else {
                         if (Math.abs(deltaY) > SWIPE_THRESHOLD) {
                             if (deltaY > 0) {
-                                snake.setDirection(Direction.DOWN);
+                                snake.setDirection(Direction.UP);
                                 directionChanged = true;
                             } else {
-                                snake.setDirection(Direction.UP);
+                                snake.setDirection(Direction.DOWN);
                                 directionChanged = true;
                             }
                         }
