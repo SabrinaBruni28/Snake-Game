@@ -48,6 +48,8 @@ public class InicialGameScreen implements Screen {
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                long id = game.sound.play();
+                game.sound.setVolume(id, 0.5f);
                 game.setScreen(new OpcionalsGameScreen(game));
                 dispose();
             }

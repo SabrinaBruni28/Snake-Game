@@ -53,17 +53,21 @@ public class GameOverScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 sound.stop();
+                long id = game.sound.play();
+                game.sound.setVolume(id, 0.5f);
                 game.setScreen(game.telaAnterior);
                 dispose();
             }
         });
 
-        TextButton exitButton = new TextButton("Sair", skin);
+        TextButton exitButton = new TextButton("Menu", skin);
         exitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 sound.stop();
-                game.setScreen(new InicialGameScreen(game));
+                long id = game.sound.play();
+                game.sound.setVolume(id, 0.5f);
+                game.setScreen(new OpcionalsGameScreen(game));
                 game.telaAnterior.dispose();
                 dispose();
             }

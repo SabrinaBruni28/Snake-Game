@@ -56,45 +56,74 @@ public class Food {
     }
 
     public void respawn(ArrayList<Food> existingFoods, Array<Vector2> snakeBody) {
-        boolean valid;
-        do {
-            int x = MathUtils.random(0, GameConfig.GRID_WIDTH - 1);
-            int y = MathUtils.random(0, GameConfig.GRID_HEIGHT - 1);
-            position.set(x, y);
-            valid = true;
+        Array<Vector2> freePositions = new Array<>();
 
-            for (Food f : existingFoods) {
-                if (f != this && f.getPosition().epsilonEquals(position, 0.01f)) {
-                    valid = false;
-                    break;
+        // Verifica todas as posições possíveis
+        for (int x = 0; x < GameConfig.GRID_WIDTH; x++) {
+            for (int y = 0; y < GameConfig.GRID_HEIGHT; y++) {
+                Vector2 candidate = new Vector2(x, y);
+                boolean occupied = false;
+
+                // Verifica se colide com alguma comida existente
+                for (Food f : existingFoods) {
+                    if (f != this && f.getPosition().epsilonEquals(candidate, 0.01f)) {
+                        occupied = true;
+                        break;
+                    }
+                }
+
+                // Verifica se colide com o corpo da cobra
+                if (!occupied) {
+                    for (Vector2 part : snakeBody) {
+                        if (part.epsilonEquals(candidate, 0.01f)) {
+                            occupied = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!occupied) {
+                    freePositions.add(candidate);
                 }
             }
+        }
 
-            for (Vector2 part : snakeBody) {
-                if (part.epsilonEquals(position, 0.01f)) {
-                    valid = false;
-                    break;
-                }
-            }
-
-        } while (!valid);
+        if (freePositions.size == 0) {
+            // Sem espaço -> posição inválida
+            position.set(-1, -1);
+        } 
+        else {
+            // Sorteia uma posição livre
+            position.set(freePositions.random());
+        }
     }
 
     public void respawn(Array<Vector2> snakeBody) {
-        boolean valid;
-        do {
-            int x = MathUtils.random(0, GameConfig.GRID_WIDTH - 1);
-            int y = MathUtils.random(0, GameConfig.GRID_HEIGHT - 1);
-            position.set(x, y);
-            valid = true;
+        Array<Vector2> freePositions = new Array<>();
 
-            for (Vector2 part : snakeBody) {
-                if (part.epsilonEquals(position, 0.01f)) {
-                    valid = false;
-                    break;
+        for (int x = 0; x < GameConfig.GRID_WIDTH; x++) {
+            for (int y = 0; y < GameConfig.GRID_HEIGHT; y++) {
+                Vector2 candidate = new Vector2(x, y);
+                boolean occupied = false;
+
+                for (Vector2 part : snakeBody) {
+                    if (part.epsilonEquals(candidate, 0.01f)) {
+                        occupied = true;
+                        break;
+                    }
+                }
+
+                if (!occupied) {
+                    freePositions.add(candidate);
                 }
             }
+        }
 
-        } while (!valid);
+        if (freePositions.size == 0) {
+            position.set(-1, -1); // sem espaço
+        } 
+        else {
+            position.set(freePositions.random());
+        }
     }
 }

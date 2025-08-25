@@ -51,6 +51,8 @@ public class OpcionalsGameScreen implements Screen {
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                long id = game.sound.play();
+                game.sound.setVolume(id, 0.5f);
                 game.setScreen(new ClassicModeScreen(game));
                 game.telaAnterior = game.getScreen();
                 game.music.stop();
@@ -62,6 +64,8 @@ public class OpcionalsGameScreen implements Screen {
         playButton2.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                long id = game.sound.play();
+                game.sound.setVolume(id, 0.5f);
                 game.setScreen(new TimedModeScreen(game));
                 game.telaAnterior = game.getScreen();
                 game.music.stop();
@@ -73,6 +77,8 @@ public class OpcionalsGameScreen implements Screen {
         playButton3.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                long id = game.sound.play();
+                game.sound.setVolume(id, 0.5f);
                 game.setScreen(new OrderedTimedModeScreen(game));
                 game.telaAnterior = game.getScreen();
                 game.music.stop();
